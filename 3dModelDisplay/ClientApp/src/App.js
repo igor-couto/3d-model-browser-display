@@ -6,8 +6,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-            Selec an <code>3d model</code> file and its <code>texture</code> to upload
+            Select a <code>3d model</code> file and its <code>texture</code> to upload
         </p>
+
+        <input className="InputModelUpload" id="input-model" type="file"></input>
+        <input className="InputTextureUpload" type="file"></input>
+
         <a
           className="App-link"
             href="https://github.com/igor-couto"
