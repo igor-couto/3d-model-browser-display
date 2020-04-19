@@ -1,26 +1,24 @@
 import React from 'react';
 import './App.css';
+import Footer from './components/Footer/Footer';
+import Display from './components/Display/Display';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <p>
-            Select a <code>3d model</code> file and its <code>texture</code> to upload
+          <label htmlFor="input-model">Select a <code>3d model</code> file</label>
+            <input className="InputModelUpload" id="input-model" type="file"></input>
+        </p>
+        <p>
+            Select a <code>Texture</code> file
+            <input className="InputTextureUpload" type="file"></input>
         </p>
 
-        <input className="InputModelUpload" id="input-model" type="file"></input>
-        <input className="InputTextureUpload" type="file"></input>
-
-        <a
-          className="App-link"
-            href="https://github.com/igor-couto"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Source Code
-        </a>
       </header>
+      <Display/>
+      <Footer/>
     </div>
   );
 }
