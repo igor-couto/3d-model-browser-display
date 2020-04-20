@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './Main.module.css';
-import ModelList from '../components/ModelList/ModelList';
+import ModelDisplay from '../ModelDisplay/ModelDisplay';
+import ModelList from '../ModelList/ModelList';
 
 function Main(){
     return(
-        <div>
+        <div className={styles.Main}>
             <ModelList/>
             <ModelDisplay/>
         </div>

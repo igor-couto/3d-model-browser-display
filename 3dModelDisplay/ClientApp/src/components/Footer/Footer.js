@@ -6,7 +6,7 @@ function Footer() {
             <div className={styles.container}>
             <a
                 className={styles.link}
-                href="https://github.com/igor-couto"
+                href="https://github.com/igor-couto/3d-model-browser-display"
                 target="_blank"
                 rel="noopener noreferrer"
             >

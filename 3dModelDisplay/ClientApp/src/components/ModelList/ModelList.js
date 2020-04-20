@@ -27,12 +27,15 @@ export default class ModelList extends Component {
     
     render(){
         return(
-            <div className="ModelList">
-                <ul>
+            <div className={styles.leftContainer}>
+                <div className={styles.list}>
                     {this.state.models.map( model => (
-                        <li key={model.Name}>{model.Name}</li>
+                        <span key={model.Name} className={styles.listItem}>
+                            {model.Name}
+                        </span>
                     ))}
-                </ul>
+                </div>
+                <div className={styles.buttonContainer}></div>
                 <button className={styles.button}>New Model</button>
             </div>
         );

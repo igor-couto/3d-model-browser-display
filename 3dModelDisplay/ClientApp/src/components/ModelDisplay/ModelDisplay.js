@@ -1,8 +1,8 @@
-// import React, { Component } from 'react';
-// import styles from './Display.module.css'
-// //import './three.js';
+import React, { Component } from 'react';
+import styles from './ModelDisplay.module.css'
+// // //import './three.js';
 
-// class Display extends Component(){
+export default class ModelDisplay extends Component {
 
     // componentDidMount(){
     //     loadScene();
@@ -93,9 +93,13 @@
     // }
 
 
-//     render() {
-//         return(<div id="3dContainer"></div>);
-//     };
-// }
-
-// export default Display;
+    render() {
+        return(
+            <div className={styles.ModelDisplay}>
+                <div className={styles.container}>
+                    <div className={styles.sceneContainer}></div>
+                    <p>Name</p>
+                </div>
+            </div>);
+    };
+}

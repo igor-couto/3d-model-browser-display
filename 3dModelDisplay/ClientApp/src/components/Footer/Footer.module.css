@@ -1,9 +1,14 @@
 .container {
+    flex-shrink: 0;
     display: flex;
-    justify-content: right;
+    flex-direction: right;
+    justify-content: flex-end;
     align-items: center;
+    background-color: #222427;
 }
 
 .link {
     color: #61dafb;
+    font-size: calc(3px + 2vmin);
+    margin-right: 20px;
 }
