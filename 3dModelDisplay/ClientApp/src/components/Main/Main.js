@@ -3,10 +3,10 @@ import styles from './Main.module.css';
 import ModelDisplay from '../ModelDisplay/ModelDisplay';
 import ModelList from '../ModelList/ModelList';
 
-function Main(){
+function Main(OpenNewModelCard){
     return(
         <div className={styles.Main}>
-            <ModelList/>
+            <ModelList OpenNewModelCard/>
             <ModelDisplay/>
         </div>
     );

@@ -1,35 +1,62 @@
-.card {
-	background-color: #fff;
-	border-radius: 4px;
-	max-width: 400px;
-	margin: 10% auto;
-	height: 100px;
-	position: relative;
-	padding: 34px;
-	color: #444;
-	cursor: pointer;
-	&:before {
-		content: '';
-		display: block;
-		position: absolute;
-		background-color: #ccc;
-		left: 20px;
-		right: 20px;
-		bottom: 0;
-		top: 50%;
-		z-index: -1;
-		box-shadow: 0 0 40px lighten(#000, 60%);
-		transition: box-shadow .2s ease-in-out;
-	}
-	&.level-3 {
-		&:hover {
-			&:before {
-				box-shadow: 0 0 80px lighten(#000, 60%);
-			}
-		}
-	}
-	h5 {
-		font-weight: 300;
-		font-size: 30px;
-	}
+.cardContainer{
+	background-color: rgba(0, 0, 0, 0.466);
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	/* visibility: hidden; */
 }
+
+.card {
+	position: flex;
+	flex-direction: row;
+	justify-content: space-around;
+
+	background-color: #1f1f1f;
+	border-radius: 4px;
+	/* max-width: 400px; */
+	width: 35%;
+	margin: 10% auto;
+	padding: 34px;
+	color: #fff;
+	box-shadow: 0 0 40px lighten(#000, 60%);
+}
+
+.textInput {
+	font-size: calc(4px + 2vmin);
+}
+
+.button {
+
+    /* margin: 0 15px 20px 15px; */
+    margin-bottom: 20px;
+
+    width: 80%;
+
+    color: white;
+    background-color: #3cbbdf;
+    border: none;
+    border-radius: 2%;
+    font-size: calc(4px + 2vmin);
+}
+
+.button:hover {
+    background-color: #61dafb;
+}
+
+/* .card:before{
+	content: '';
+	display: block;
+	position: absolute;
+	background-color: #ccc;
+	left: 20px;
+	right: 20px;
+	bottom: 0;
+	top: 50%;
+	z-index: -1;
+
+	transition: box-shadow .2s ease-in-out;
+}
+
+.card:hover{
+	box-shadow: 0 0 80px lighten(#000, 60%);
+} */

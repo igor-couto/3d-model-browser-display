@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styles from './Dropzone.module.css'
 import uploadIcon from './cloud-upload-icon.svg'
 
-class Dropzone extends Component {
+export default class Dropzone extends Component {
   constructor(props) {
     super(props)
     this.state = { hightlight: false }
@@ -106,5 +106,3 @@ class Dropzone extends Component {
     )
   }
 }
-
-export default Dropzone

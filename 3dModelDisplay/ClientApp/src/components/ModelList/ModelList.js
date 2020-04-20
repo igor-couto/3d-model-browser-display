@@ -3,6 +3,10 @@ import styles from './ModelList.module.css';
 
 export default class ModelList extends Component {
     
+    constructor(props){
+        super(props);
+    }
+
     state = {
         models: []
     }
@@ -16,14 +20,14 @@ export default class ModelList extends Component {
         console.log(response);
         const responseModels = await response.json();
 
-        console.log(responseModels);
-
         this.setState({
             models: responseModels
         });
-
-        console.log(this.state);
     };
+
+    OpenUploadCard = () => {
+        this.props.OpenNewModelCard(true);
+    }
     
     render(){
         return(
@@ -35,8 +39,10 @@ export default class ModelList extends Component {
                         </span>
                     ))}
                 </div>
-                <div className={styles.buttonContainer}></div>
-                <button className={styles.button}>New Model</button>
+                <div className={styles.buttonContainer}>
+                    <button className={styles.button} onClick={this.OpenUploadCard}>New Model</button>
+                </div>
+                
             </div>
         );
     };
