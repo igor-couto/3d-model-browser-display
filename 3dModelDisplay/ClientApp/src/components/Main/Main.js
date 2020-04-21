@@ -6,7 +6,7 @@ import ModelList from '../ModelList/ModelList';
 function Main(props){
     return(
         <div className={styles.Main}>
-            <ModelList OpenNewModelCard={props.OpenNewModelCard}/>
+            <ModelList openNewModelCard={props.openNewModelCard}/>
             <ModelDisplay/>
         </div>
     );

@@ -7,20 +7,31 @@ import UploadCard from './components/UploadCard/UploadCard';
 
 export default class App extends Component  {
   
-  state = {
-    isNewModelCardOpen: false
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      isNewModelCardOpen: false
+    }
+
+    this.openNewModelCard = this.openNewModelCard.bind(this);
   }
 
-   OpenNewModelCard = (shouldOpen) => {
+
+  openNewModelCard (shouldOpen) {
     this.setState({isNewModelCardOpen : shouldOpen});
-  };
+  } 
+
   
   render(){
     return (
       <div className="App">
-        <UploadCard isNewModelCardOpen={this.state.isNewModelCardOpen}/>
+        <UploadCard 
+          isNewModelCardOpen={this.state.isNewModelCardOpen} 
+          openNewModelCard={this.openNewModelCard}
+        />
         <Header/>
-        <Main OpenNewModelCard={this.OpenNewModelCard}/>
+        <Main openNewModelCard={this.openNewModelCard}/>
         <Footer/>
       </div>
     );

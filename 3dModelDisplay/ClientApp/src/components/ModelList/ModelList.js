@@ -25,7 +25,7 @@ export default class ModelList extends Component {
     };
 
     OpenUploadCard = () => {
-        this.props.OpenNewModelCard(true);
+        this.props.openNewModelCard(true);
     }
     
     render(){
