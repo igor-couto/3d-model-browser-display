@@ -60,3 +60,8 @@
 .card:hover{
 	box-shadow: 0 0 80px lighten(#000, 60%);
 } */
+
+.close{
+	width:32px;
+	height:32px;
+}
