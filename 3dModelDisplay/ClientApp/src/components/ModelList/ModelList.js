@@ -17,7 +17,6 @@ export default class ModelList extends Component {
 
     loadModels = async () => {
         const response = await fetch('https://localhost:44355/Model/GetAll', {method: 'GET'});
-        console.log(response);
         const responseModels = await response.json();
 
         this.setState({
