@@ -28,6 +28,5 @@ export default class UploadCard extends Component {
         }else {
             return(<div hidden></div>);
         }
-
     }
 }

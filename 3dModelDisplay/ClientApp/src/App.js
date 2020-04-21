@@ -5,10 +5,8 @@ import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import UploadCard from './components/UploadCard/UploadCard';
 
-
 export default class App extends Component  {
   
-
   state = {
     isNewModelCardOpen: false
   }
@@ -27,6 +25,4 @@ export default class App extends Component  {
       </div>
     );
   };
-
-
 }
