@@ -21,17 +21,41 @@ export default class ModelDisplay extends Component {
         // script3.async = true;
         // document.body.appendChild(script3);
 
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-
-
         this.loadScene();
     }
 
     loadScene = () => {
-        const container = document.createElement( 'div' );
-        document.body.appendChild( container );
-        //const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 1, 2000 );
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio( window.devicePixelRatio );
+        renderer.setSize( window.innerWidth/4, window.innerHeight/4 );
+        document.getElementById('3dContainer').appendChild(renderer.domElement);
+
+        const ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
+        scene.add( ambientLight );
+        const pointLight = new THREE.PointLight( 0xffffff, 0.8 );
+        camera.add( pointLight );
+
+        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+        var material = new THREE.MeshBasicMaterial( { color: 0x00ee00 } );
+        var cube = new THREE.Mesh( geometry, material );
+        scene.add( cube );
+        camera.position.z = 50;
+        var animate = function () {
+          requestAnimationFrame( animate );
+          cube.rotation.x += 0.01;
+          cube.rotation.y += 0.01;
+          renderer.render( scene, camera );
+        };
+        animate();
+
+
+        // const container = document.getElementById('3dContainer')
+        // document.body.appendChild( container );
+        // const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
         // camera.position.z = 250;
         // // scene
         // const scene = new THREE.Scene();
@@ -40,7 +64,8 @@ export default class ModelDisplay extends Component {
         // const pointLight = new THREE.PointLight( 0xffffff, 0.8 );
         // camera.add( pointLight );
         // scene.add( camera );
-        // // texture
+        
+        // // // texture
         // const manager = new THREE.LoadingManager();
         // manager.onProgress = function ( item, loaded, total ) {
         //     console.log( item, loaded, total );
@@ -75,7 +100,7 @@ export default class ModelDisplay extends Component {
         // renderer.setSize( window.innerWidth, window.innerHeight );
         // container.appendChild( renderer.domElement );
     
-        // window.addEventListener( 'resize', onWindowResize, false );
+        // window.addEventListener( 'resize', this.onWindowResize, false );
     
         // this.setState({
         //     container = document.getElementById('3dContainer'),
@@ -88,7 +113,10 @@ export default class ModelDisplay extends Component {
         //     object = null
         // });
 
-        //renderScene();
+        //this.renderScene();
+
+        // camera.lookAt( scene.position );
+        // renderer.render( scene, camera );
     };
 
     // onWindowResize = () => {
@@ -99,19 +127,19 @@ export default class ModelDisplay extends Component {
     //     renderer.setSize( window.innerWidth, window.innerHeight );
     // }
 
-    // renderScene() {
-    //     requestAnimationFrame( animate );
-    //     object.rotateY(rotationspeed);
-    //     camera.lookAt( scene.position );
-    //     renderer.render( scene, camera );
-    // }
+    renderScene() {
+        //requestAnimationFrame( animate );
+        //object.rotateY(rotationspeed);
+        // camera.lookAt( scene.position );
+        // renderer.render( scene, camera );
+    }
 
 
     render() {
         return(
             <div className={styles.ModelDisplay}>
                 <div className={styles.container}>
-                    <div className={styles.sceneContainer}></div>
+                    <div id="3dContainer" className={styles.sceneContainer}></div>
                     <p>Name</p>
                 </div>
             </div>);
