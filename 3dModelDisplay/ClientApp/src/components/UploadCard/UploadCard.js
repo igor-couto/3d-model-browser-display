@@ -22,10 +22,16 @@ export default class UploadCard extends Component {
             return(
                 <div className={styles.cardContainer}>
                     <div className={styles.card}>
-                        <CloseIcon className={styles.close} onClick={this.CloseCard}/>
-                        <DropZone onFilesAdded={console.log}/>
-                        <input className={styles.textInput} placeholder="Model Name ..."/>
-                        <button className={styles.button} onClick={this.UploadModel}>Upload</button>
+                        <div className={styles.header}>
+                            <CloseIcon className={styles.close} onClick={this.CloseCard}/>
+                        </div>
+                        <div className={styles.body}>
+                            <DropZone onFilesAdded={console.log}/>
+                            <div className={styles.info}>
+                                <input className={styles.textInput} placeholder="Model Name ..."/>
+                                <button className={styles.button} onClick={this.UploadModel}>Upload</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );

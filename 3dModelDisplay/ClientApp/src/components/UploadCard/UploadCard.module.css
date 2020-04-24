@@ -1,4 +1,4 @@
-.cardContainer{
+.cardContainer {
 	background-color: rgba(0, 0, 0, 0.466);
 	position: absolute;
 	height: 100%;
@@ -7,36 +7,62 @@
 }
 
 .card {
-	position: flex;
-	flex-direction: row;
-	justify-content: space-around;
+	display: flex;
+	flex-direction: column;
 
 	background-color: #1f1f1f;
 	border-radius: 4px;
-	/* max-width: 400px; */
 	width: 35%;
-	margin: 10% auto;
-	padding: 34px;
+	/* margin: 10% auto; */
+	/* padding: 5px; */
 	color: #fff;
-	box-shadow: 0 0 40px lighten(#000, 60%);
+	box-shadow: 0px 0px 25px -1px rgba(0,0,0,0.5);
+}
+
+.header {
+	
+	border-bottom: 1px outset rgb(148, 148, 148);
+
+
+	display: flex;
+	flex-direction: row-reverse;
+	background-color: #1a1919;
+
+}
+
+.body {
+	display: flex;
+	flex-direction: row;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 10px;
 }
 
 .textInput {
-	font-size: calc(4px + 2vmin);
+	padding: 2px;
+	font-size: calc(3px + 2vmin);
+	width: 100%;
+	margin-bottom: 10px;
 }
 
 .button {
 
     /* margin: 0 15px 20px 15px; */
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 
-    width: 80%;
+    width: 100%;
 
     color: white;
     background-color: #3cbbdf;
     border: none;
     border-radius: 2%;
-    font-size: calc(4px + 2vmin);
+	font-size: calc(4px + 2vmin);
+	border-radius: 4px;
 }
 
 .button:hover {
@@ -64,4 +90,12 @@
 .close{
 	width:32px;
 	height:32px;
+	margin: 6px;
+	fill: #D75A4A;
+
+}
+
+.close:hover {
+	cursor: pointer;
+	fill: rgb(218, 58, 37);
 }
