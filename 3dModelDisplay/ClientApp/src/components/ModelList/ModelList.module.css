@@ -26,6 +26,10 @@
     background-color: rgb(59, 67, 73);
 }
 
+.selectedListItem {
+    background-color: rgb(59, 67, 73);
+}
+
 .buttonContainer {
     display: flex;
     justify-content: center;
@@ -41,16 +45,16 @@
     width: 80%;
 
     color: white;
-    background-color: #18b359;
+    background-color: #3cbbdf;
     border: none;
-    border-radius: 2%;
-    font-size: calc(8px + 2vmin);
+    border-radius: 4px;
+    font-size: calc(5px + 2vmin);
 }
 
 .button:hover {
-    background-color: #3cb16d;
+    background-color: #61dafb;
 }
 
 .button:focus{
-    outline-color: #5ae255;
+    background-color: #61c7e4;
 }
