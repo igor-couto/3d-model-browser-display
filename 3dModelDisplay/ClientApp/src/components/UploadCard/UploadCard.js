@@ -5,10 +5,6 @@ import {ReactComponent as CloseIcon} from './close-icon.svg';
 
 export default class UploadCard extends Component {
 
-    constructor(props){
-        super(props);
-    }
-
     UploadModel = () => {
         
     }
