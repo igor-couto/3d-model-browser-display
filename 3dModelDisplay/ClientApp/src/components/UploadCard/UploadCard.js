@@ -10,7 +10,7 @@ export default class UploadCard extends Component {
     }
 
     UploadModel = () => {
-
+        
     }
 
     CloseCard = () => {
