@@ -1,15 +1,33 @@
-import React from 'react';
+import React,  { Component } from 'react';
 import styles from './Main.module.css';
 import ModelDisplay from '../ModelDisplay/ModelDisplay';
 import ModelList from '../ModelList/ModelList';
 
-function Main(props){
-    return(
-        <div className={styles.Main}>
-            <ModelList openNewModelCard={props.openNewModelCard}/>
-            <ModelDisplay/>
-        </div>
-    );
-}
+export default class Main extends Component {
 
-export default Main;
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modelName: ""
+        } 
+
+        this.modelSelectHandler = this.modelSelectHandler.bind(this);
+    }
+
+    modelSelectHandler (newModel, newTexture) {
+        this.setState({
+            model: newModel,
+            texture: newTexture
+        }); 
+    }
+
+    render() {
+        return(
+            <div className={styles.Main}>
+                <ModelList openNewModelCard={this.props.openNewModelCard} modelSelectHandler={this.modelSelectHandler}/>
+                <ModelDisplay model={this.state.model} texture={this.state.texture}/>
+            </div>
+        );
+    }
+}

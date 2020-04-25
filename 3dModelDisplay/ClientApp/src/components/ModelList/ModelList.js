@@ -34,11 +34,15 @@ export default class ModelList extends Component {
     SelectModel = async (index) => {
         this.setState({selectedListItem: index});
         
-        let urlGetModel = `https://localhost:44355/Model/GetModel?modelName=${this.state.models[index].Name}`;
-        const responseModel = await fetch(urlGetModel);
+        let modelName = this.state.models[index].Name;
 
-        let urlGetTexture = `https://localhost:44355/Model/GetTexture?modelName=${this.state.models[index].Name}`;
-        const responseTexture = await fetch(urlGetTexture);
+        let urlGetModel = `https://localhost:44355/Model/GetModel?modelName=${modelName}`;
+        let urlGetTexture = `https://localhost:44355/Model/GetTexture?modelName=${modelName}`;
+
+        let model = await fetch(urlGetModel);
+        let texture = await fetch(urlGetTexture);
+
+        this.props.modelSelectHandler(model, texture);
     }
     
     render(){
