@@ -23,7 +23,7 @@ namespace _3dModelDisplay.Controllers
                     FileDownloadName = modelName
                 };
             }
-            catch(Exception exception)
+            catch(Exception)
             {
                 return new NotFoundResult();
             }
@@ -43,7 +43,7 @@ namespace _3dModelDisplay.Controllers
                     FileDownloadName = modelName
                 };
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return new NotFoundResult();
             }
@@ -51,16 +51,11 @@ namespace _3dModelDisplay.Controllers
 
         private byte[] OpenFile(string filename) 
         {
-            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
-            {
-                // Create a byte array of file stream length
-                byte[] bytes = System.IO.File.ReadAllBytes(filename);
-                //Read block of bytes from stream into the byte array
-                fs.Read(bytes, 0, System.Convert.ToInt32(fs.Length));
-                //Close the File Stream
-                fs.Close();
-                return bytes; //return the byte data
-            }
+            using var fileStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            var bytes = System.IO.File.ReadAllBytes(filename);
+            fileStream.Read(bytes, 0, Convert.ToInt32(fileStream.Length));
+            fileStream.Close();
+            return bytes;
         }
 
         [HttpGet]
@@ -76,7 +71,6 @@ namespace _3dModelDisplay.Controllers
                 var folder = folderName.Substring(folderName.LastIndexOf('\\') + 1);
                 folders.Add(new Folder() { Name = folder });
             }
-                
             var jsonResponse = JsonConvert.SerializeObject(folders);
 
             return Content(jsonResponse);
