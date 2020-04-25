@@ -62,23 +62,6 @@ export default class Dropzone extends Component {
     return array;
   }
 
-  onDrop(event) {
-    event.preventDefault();
-  
-    if (this.props.disabled) return;
-  
-    const files = event.dataTransfer.files;
-    if (this.props.onFilesAdded) {
-      const array = this.fileListToArray(files);
-      this.props.onFilesAdded(array);
-    }
-    this.setState({ hightlight: false });
-  }
-
-  onDragLeave() {
-    this.setState({ hightlight: false });
-  }
-
   render() {
     return (
       <div
