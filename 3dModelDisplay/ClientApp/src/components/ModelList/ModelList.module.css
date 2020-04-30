@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: space-between;
     border-right: 2px solid rgb(68, 75, 80);
-    /* background-color: #40444e; */
     background-color: #2d3038;
     width: 20%;
 }
@@ -17,9 +16,7 @@
 
 .listItem {
     padding: 5px 60px 5px 10px;
-    padding-right: 60px;
     border-bottom: 1px solid #222327;
-    padding-left: 10px;
 }
 
 .listItem:hover {
@@ -27,7 +24,10 @@
 }
 
 .selectedListItem {
-    background-color: rgb(59, 67, 73);
+    padding: 5px 60px 5px 10px;
+    border-bottom: 1px solid #222327;
+    background-color: rgb(83, 92, 99);
+    border-right: 3px solid #3cbbdf;
 }
 
 .buttonContainer {
@@ -38,12 +38,8 @@
 }
 
 .button {
-
-    /* margin: 0 15px 20px 15px; */
     margin-bottom: 20px;
-
     width: 80%;
-
     color: white;
     background-color: #3cbbdf;
     border: none;
