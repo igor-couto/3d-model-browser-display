@@ -24,7 +24,7 @@ export default class ModelList extends Component {
         });
 
         if(this.state.models.lenght > 0)
-            this.setState( { selectedModelIndex: 0 } );
+            this.setState( { selectedListItem: 0 } );
     };
 
     OpenUploadCard = () => {
@@ -42,7 +42,12 @@ export default class ModelList extends Component {
         let model = await fetch(urlGetModel);
         let texture = await fetch(urlGetTexture);
 
-        this.props.modelSelectHandler(model, texture);
+        let modelBlob = await model.blob();
+        let imageBlob = await texture.blob();
+
+        let modelText = await modelBlob.text();
+        
+        this.props.modelSelectHandler(modelText, imageBlob);
     }
     
     render(){
@@ -52,7 +57,7 @@ export default class ModelList extends Component {
                     {this.state.models.map( (model, index) => (
                         <span 
                             key={model.Name} 
-                            className={ `${styles.listItem} ${(index === this.state.selectedModelIndex)? styles.selectedListItem : ''}`}
+                            className={`${(index === this.state.selectedListItem)? styles.selectedListItem : styles.listItem}`}
                             onClick={   (e) => { this.SelectModel(index) }  }
                         >
                             {model.Name}
