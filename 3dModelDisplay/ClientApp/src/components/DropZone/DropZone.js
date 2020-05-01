@@ -44,14 +44,14 @@ export default class Dropzone extends Component {
   onDrop(event) {
     event.preventDefault()
 
-    if (this.props.disabled) return
+    if (this.props.disabled) return;
 
-    const files = event.dataTransfer.files
+    const files = event.dataTransfer.files;
     if (this.props.onFilesAdded) {
-      const array = this.fileListToArray(files)
-      this.props.onFilesAdded(array)
+      const array = this.fileListToArray(files);
+      this.props.onFilesAdded(array);
     }
-    this.setState({ hightlight: false })
+    this.setState({ hightlight: false });
   }
 
   fileListToArray(list) {
@@ -74,14 +74,14 @@ export default class Dropzone extends Component {
       >
         <input
           ref={this.fileInputRef}
-          className= {styles.FileInput} //"FileInput"
+          className= {styles.FileInput}
           type="file"
           multiple
           onChange={this.onFilesAdded}
         />
         <img
           alt="upload"
-          className={styles.Icon} //"Icon"
+          className={styles.Icon}
           src={uploadIcon}
         />
         <span className={styles.FileInputText}>Upload Files</span>

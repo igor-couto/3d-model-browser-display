@@ -1,4 +1,5 @@
 ﻿using _3dModelDisplay.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -79,6 +80,31 @@ namespace _3dModelDisplay.Controllers
         [HttpPost]
         public ActionResult Upload() 
         {
+            try
+            {
+                var files = Request.Form.Files;
+                var currentDirectory = Directory.GetCurrentDirectory();
+                
+
+                foreach (var file in files)
+                {
+                    if (file.Length > 0)
+                    {
+                        var newDirectory = Path.Combine(currentDirectory, "3DModelsLibrary", Path.GetFileNameWithoutExtension(file.FileName));
+                        Directory.CreateDirectory(newDirectory);
+                        var pathToSave = Path.Combine( newDirectory, file.FileName);
+
+                        using var stream = System.IO.File.Create(pathToSave);
+                        file.CopyTo(stream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return Json("Upload failed");
+            }
+
             return Ok();
         }
     }
