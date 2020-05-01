@@ -59,6 +59,11 @@
     background-color: #61dafb;
 }
 
+.button:disabled {
+	background: rgb(163, 163, 163);
+	cursor: default;
+  }
+
 .close{
 	width:32px;
 	height:32px;
