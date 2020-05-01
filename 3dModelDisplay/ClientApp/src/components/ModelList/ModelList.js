@@ -46,8 +46,9 @@ export default class ModelList extends Component {
         let imageBlob = await texture.blob();
 
         let modelText = await modelBlob.text();
-        
-        this.props.modelSelectHandler(modelText, imageBlob);
+        console.log('SelectModel on modellist');
+        console.log(modelName);
+        this.props.modelSelectHandler(modelText, imageBlob, modelName);
     }
     
     render(){

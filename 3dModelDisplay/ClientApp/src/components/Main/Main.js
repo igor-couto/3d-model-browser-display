@@ -7,18 +7,15 @@ export default class Main extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            modelName: ""
-        } 
-
+        this.state = {} 
         this.modelSelectHandler = this.modelSelectHandler.bind(this);
     }
 
-    modelSelectHandler (newModel, newTexture) {
+    modelSelectHandler = (selectedModel, selectedTexture, selectedModelName) => {
         this.setState({
-            model: newModel,
-            texture: newTexture
+            name: selectedModelName,
+            model: selectedModel,
+            texture: selectedTexture
         }); 
     }
 
@@ -26,7 +23,7 @@ export default class Main extends Component {
         return(
             <div className={styles.Main}>
                 <ModelList openNewModelCard={this.props.openNewModelCard} modelSelectHandler={this.modelSelectHandler}/>
-                <ModelDisplay model={this.state.model} texture={this.state.texture}/>
+                <ModelDisplay model={this.state.model} texture={this.state.texture} name={this.state.name}/>
             </div>
         );
     }
