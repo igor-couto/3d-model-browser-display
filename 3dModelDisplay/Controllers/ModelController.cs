@@ -85,7 +85,6 @@ namespace _3dModelDisplay.Controllers
                 var files = Request.Form.Files;
                 var currentDirectory = Directory.GetCurrentDirectory();
                 
-
                 foreach (var file in files)
                 {
                     if (file.Length > 0)
@@ -99,7 +98,7 @@ namespace _3dModelDisplay.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
                 return Json("Upload failed");
