@@ -14,7 +14,7 @@ namespace _3dModelDisplay.Controllers
         {
             try 
             {
-                var path = @$"C:\temp/{modelName}/{modelName}.obj";
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "3DModelsLibrary", modelName, modelName + ".gltf");
 
                 var mimeType = "application/octet-stream";
                 var fileBytes = OpenFile(path);
@@ -34,7 +34,7 @@ namespace _3dModelDisplay.Controllers
         {
             try
             {
-                var path = @$"C:\temp/{modelName}/{modelName}.png";
+                var path = Path.Combine( Directory.GetCurrentDirectory(), "3DModelsLibrary", modelName, modelName + ".png");
 
                 var mimeType = "image/png";
                 var fileBytes = OpenFile(path);
@@ -62,7 +62,7 @@ namespace _3dModelDisplay.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var path = @"C:\temp";
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "3DModelsLibrary");
 
             var subdirectoryEntries = Directory.GetDirectories(path);
             var folders = new List<Folder>();
