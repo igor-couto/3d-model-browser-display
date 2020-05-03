@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import DropZone from '../DropZone/DropZone';
 import styles from './UploadCard.module.css';
 import {ReactComponent as CloseIcon} from './close-icon.svg';
+// import * as THREE from '../../lib/threejs/build/three.module';
+//import { GLTFExporter } from './GLTFExporter.js';
+//import * as THREE from 'js/three.module.js';
+var THREE = require('three');
+
 
 export default class UploadCard extends Component {
 
@@ -42,21 +47,12 @@ export default class UploadCard extends Component {
         }
     }
 
-    sendRequest(file) {
-        return new Promise((resolve, reject) => {
-            const req = new XMLHttpRequest();
-
-            console.log(file);
-
-            const formData = new FormData();
-            formData.append("file", file, file.name);
-
-            req.open("POST", "https://localhost:44355/Model/Upload");
-            req.send(formData);
-        });
-    }
-
     sendRequest = async (file) =>  {
+
+        const fileExtension = file.name.substr(file.name.lastIndexOf('.') + 1);
+        if(fileExtension === 'obj'){
+            const file2 = this.exportGLTF(file);
+        }
 
         const formData = new FormData();
         formData.append("file", file, file.name);
@@ -93,9 +89,43 @@ export default class UploadCard extends Component {
         //   this.setState({ uploadProgress: copy });
         //   reject(req.response);
         //  });
-       
         // });
     }
+
+    // exportGLTF = ( input ) => {
+
+    //     var gltfExporter = new GLTFExporter();
+
+    //     var options = {
+    //         trs: true,
+    //         onlyVisible: true,
+    //         truncateDrawRange: true,
+    //         binary: true,
+    //         forcePowerOfTwoTextures: true,
+    //         maxTextureSize: Infinity
+    //     };
+
+    //     return gltfExporter.parse( input, function ( result ) {
+
+    //         if ( result instanceof ArrayBuffer ) {
+    //             this.saveArrayBuffer( result, 'scene.glb' );
+
+    //         } else {
+
+    //             var output = JSON.stringify( result, null, 2 );
+    //             console.log( output );
+    //             this.saveString( output, 'scene.gltf' );
+    //         }
+    //     }, options );
+    // }
+
+    // saveString = ( text, filename ) => {
+    //     //save( new Blob( [ text ], { type: 'text/plain' } ), filename );
+    // }
+
+    // saveArrayBuffer = ( buffer, filename ) => {
+    //     //save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
+    // }
 
     CloseCard = () => {
         this.props.openNewModelCard(false);
