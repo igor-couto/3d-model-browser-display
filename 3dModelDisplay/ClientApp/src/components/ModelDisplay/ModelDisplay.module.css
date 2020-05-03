@@ -18,3 +18,7 @@
     border: 1px outer rgb(68, 75, 80);
     text-align: center;
 }
+
+.ModelDisplay :nth-child(1){
+    outline: none;
+}
