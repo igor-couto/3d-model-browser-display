@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './ModelDisplay.module.css';
-import {GLTFLoader} from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader';
-import {OrbitControls} from '../../../node_modules/three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 var THREE = require('three');
 
 export default class ModelDisplay extends Component {
