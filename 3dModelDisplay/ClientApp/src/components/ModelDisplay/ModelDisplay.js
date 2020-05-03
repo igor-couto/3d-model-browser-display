@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import styles from './ModelDisplay.module.css'
-import * as THREE from './three.module';
+import styles from './ModelDisplay.module.css';
+import {GLTFLoader} from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader';
+import {OrbitControls} from '../../../node_modules/three/examples/jsm/controls/OrbitControls';
+var THREE = require('three');
 
 export default class ModelDisplay extends Component {
 
@@ -25,6 +27,8 @@ export default class ModelDisplay extends Component {
         }
         fatherElement.appendChild(renderer.domElement);
 
+        var controls = new OrbitControls( camera, renderer.domElement );
+
         const ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
         scene.add( ambientLight );
         const pointLight = new THREE.PointLight( 0xffffff, 0.8 );
@@ -32,26 +36,50 @@ export default class ModelDisplay extends Component {
 
         scene.add( camera );
 
-        var material = new THREE.MeshPhongMaterial( { color: 0x829FBE } ); 
-
-
         const manager = new THREE.LoadingManager();
-        manager.onProgress = function ( item, loaded, total ) {
-            console.log( item, loaded, total );
-        };
+        manager.onProgress = function ( item, loaded, total ) { };
+
+        var material = new THREE.MeshPhongMaterial( { color: 0x829FBE } ); 
         const textureLoader = new THREE.TextureLoader( manager );
         const texture = textureLoader.load( this.props.texture );
         
+        var loader = new GLTFLoader();
+        var object;
 
-        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-        var cube = new THREE.Mesh( geometry, material );
-        scene.add( cube );
+        loader.load(
+            // resource URL
+            this.props.model,
+            // called when the resource is loaded
+            function ( gltf ) {
+
+                object = gltf.scenes[0].children[0];
+                object.material = material;
+                object.scale.x = 1;
+                object.scale.y = 1;
+                object.scale.z = 1;
+                object.visible = true;
+
+                scene.add( object );
+            },
+            function ( xhr ) {
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+            },
+            function ( error ) {
+                console.log( 'An error happened' );
+            }
+        );
+
         camera.position.z = 6;
         camera.position.y = 1
         camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
+        controls.update();
+
         var animate = function () {
             requestAnimationFrame( animate );
-            cube.rotation.y += 0.01;
+            if(object !== undefined){
+                object.rotation.y += 0.01;
+            }
+            controls.update();
             renderer.render( scene, camera );
         };
         animate();
@@ -71,8 +99,6 @@ export default class ModelDisplay extends Component {
     }
 
     render() {
-        console.log('modeldisplay render');
-        console.log(this.props.name);
         return(
             <div className={styles.ModelDisplay}>
                 <div className={styles.container}>
