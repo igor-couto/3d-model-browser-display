@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import DropZone from '../DropZone/DropZone';
 import styles from './UploadCard.module.css';
 import {ReactComponent as CloseIcon} from './close-icon.svg';
-// import * as THREE from '../../lib/threejs/build/three.module';
-//import { GLTFExporter } from './GLTFExporter.js';
-//import * as THREE from 'js/three.module.js';
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 var THREE = require('three');
 
 
@@ -49,18 +47,65 @@ export default class UploadCard extends Component {
 
     sendRequest = async (file) =>  {
 
-        const fileExtension = file.name.substr(file.name.lastIndexOf('.') + 1);
-        if(fileExtension === 'obj'){
-            const file2 = this.exportGLTF(file);
+        let fileExtension = file.name.substr(file.name.lastIndexOf('.') + 1);
+        let formData = new FormData();
+        let fileName = file.name.split('.').slice(0, -1).join('.');
+        let content = file;
+
+        if(fileExtension === 'glFT'){
+
+            //formData.append("file", file, file.name);
+
+            formData.append('file', file, `${fileName}.${fileExtension}`);
+
+            const response = await fetch("https://localhost:44355/Model/Upload", {
+                method: 'POST',
+                body: formData
+            });
+
+
+        } else {
+
+            let gltfExporter = new GLTFExporter();
+            
+            let options = {
+                trs: true,
+                onlyVisible: true,
+                truncateDrawRange: true,
+                binary: false,
+                forcePowerOfTwoTextures: true,
+                maxTextureSize: Infinity
+            };
+            gltfExporter.parse(file, function (result) {
+                if (result instanceof ArrayBuffer) {
+                    fileExtension = 'glb';
+                    content = new Blob([result]);
+                    header = { 'content-type': 'application/octet-stream' };
+                }
+                else {
+                    let output = JSON.stringify(result, null, 2);
+                    let newFileExtension = 'gltf';
+                    content = new Blob( [ output ]);
+                    header = { 'content-type': 'text/plain' };
+
+                    formData.append('file', content, `${fileName}.${newFileExtension}`);
+
+                    const response = fetch("https://localhost:44355/Model/Upload", {
+                        method: 'POST',
+                        body: formData
+                    });
+                }
+            }, options);
         }
 
-        const formData = new FormData();
-        formData.append("file", file, file.name);
+        // formData.append('file', parameters.content, `${fileName}.${parameters.fileExtension}`);
 
-        const response = await fetch("https://localhost:44355/Model/Upload", {
-            method: 'POST',
-            body: formData
-        });
+        // const response = await fetch("https://localhost:44355/Model/Upload", {
+        //     method: 'POST',
+        //     body: formData
+        // });
+
+
 
         // return new Promise((resolve, reject) => {
         //  const req = new XMLHttpRequest();
@@ -100,7 +145,7 @@ export default class UploadCard extends Component {
     //         trs: true,
     //         onlyVisible: true,
     //         truncateDrawRange: true,
-    //         binary: true,
+    //         binary: false,
     //         forcePowerOfTwoTextures: true,
     //         maxTextureSize: Infinity
     //     };
@@ -120,10 +165,12 @@ export default class UploadCard extends Component {
     // }
 
     // saveString = ( text, filename ) => {
+    //     console.log('saveString');
     //     //save( new Blob( [ text ], { type: 'text/plain' } ), filename );
     // }
 
     // saveArrayBuffer = ( buffer, filename ) => {
+    //     console.log('saveArrayBuffer');
     //     //save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
     // }
 

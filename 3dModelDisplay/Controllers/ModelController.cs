@@ -19,10 +19,7 @@ namespace _3dModelDisplay.Controllers
                 var mimeType = "application/octet-stream";
                 var fileBytes = OpenFile(path);
 
-                return new FileContentResult(fileBytes, mimeType)
-                {
-                    FileDownloadName = modelName
-                };
+                return new FileContentResult(fileBytes, mimeType) { FileDownloadName = modelName };
             }
             catch(Exception)
             {
@@ -39,10 +36,7 @@ namespace _3dModelDisplay.Controllers
                 var mimeType = "image/png";
                 var fileBytes = OpenFile(path);
 
-                return new FileContentResult(fileBytes, mimeType)
-                {
-                    FileDownloadName = modelName
-                };
+                return new FileContentResult(fileBytes, mimeType) { FileDownloadName = modelName };
             }
             catch (Exception)
             {

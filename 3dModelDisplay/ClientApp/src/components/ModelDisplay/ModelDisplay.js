@@ -53,7 +53,11 @@ export default class ModelDisplay extends Component {
             function ( gltf ) {
 
                 object = gltf.scenes[0].children[0];
+                console.log(object);
                 object.material = material;
+                
+
+
                 object.scale.x = 1;
                 object.scale.y = 1;
                 object.scale.z = 1;
