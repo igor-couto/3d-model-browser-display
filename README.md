@@ -2,7 +2,7 @@
 
 Display 3D Models in the browser
 
-![](preview/preview_01.png)
+![](https://github.com/igor-couto/images/blob/main/3d-model-browser-display/preview_01.png)
 
 ### Built With
 
